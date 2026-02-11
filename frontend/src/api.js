@@ -15,9 +15,11 @@ export async function addSupplier(data) {
 }
 
 export async function uploadDocument(formData) {
-  const res = await fetch(`${BASE_URL}/documents`, {
+  const res = await fetch("http://localhost:5000/documents", {
     method: "POST",
     body: formData
   });
-  return res.json();
+
+  const data = await res.json();
+  return data;   // 👈 return decision
 }

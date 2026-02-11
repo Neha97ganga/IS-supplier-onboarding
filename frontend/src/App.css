@@ -11,13 +11,19 @@ body {
 }
 
 /* ---------- Header ---------- */
-header {
+.header {
   background-color: #0b3c5d;
   color: white;
   padding: 16px 24px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 20px;
+}
+
+.menu-icon {
+  font-size: 22px;
+  cursor: pointer;
+  user-select: none;
 }
 
 header h2 {
@@ -26,39 +32,91 @@ header h2 {
   font-size: 20px;
 }
 
-header button {
-  background: white;
-  color: #0b3c5d;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 500;
+/* ---------- Layout ---------- */
+.layout {
+  display: flex;
 }
 
-header button:hover {
-  background: #e6eef3;
+/* Sidebar */
+.sidebar {
+  position: absolute;
+  top: 80px;
+  left: 20px;
+  width: 170px;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.sidebar.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Sidebar Menu Box */
+.menu-box {
+  background-color: #eef2f5;
+  padding: 15px 10px 15px 20px;
+  border-radius: 6px;
+  position: relative;
+}
+
+.menu-box::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: black;
+}
+
+/* Menu Items */
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.menu-item:hover {
+  font-weight: 600;
+}
+
+.arrow {
+  margin-left: 6px;
+  font-size: 14px;
+  color: black;
 }
 
 /* ---------- Main Content ---------- */
+.content {
+  flex: 1;
+  transition: margin-left 0.3s ease;
+}
+
+.content.shift {
+  margin-left: 180px;
+}
+
 main {
   padding: 30px;
   display: flex;
   justify-content: center;
 }
 
-
-/* ---------- Card Layout ---------- */
+/* ---------- Card ---------- */
 .card {
   background: white;
   padding: 24px;
   width: 100%;
   max-width: 1000px;
-  margin: 0 auto; /* centers the card */
+  margin: 0 auto;
   border-radius: 8px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
-
 
 /* ---------- Typography ---------- */
 h3 {
@@ -130,34 +188,57 @@ tr:last-child td {
 
 /* ---------- Status Pills ---------- */
 .status {
-  padding: 4px 10px;
-  border-radius: 12px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  display: inline-block;
   font-size: 0.85em;
-  font-weight: 500;
 }
 
-.status.active {
-  background: #e6f4ea;
-  color: #2e7d32;
+/* ACCEPT */
+.status.accept {
+  background-color: #d4edda;
+  color: #155724;
 }
 
+/* ON HOLD */
+.status.on_hold {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+/* REJECT */
+.status.reject {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Pending */
 .status.pending {
-  background: #fff3e0;
-  color: #ef6c00;
-}
-
-.status.inactive {
-  background: #ffebee;
-  color: #c62828;
+  background-color: #e2e3e5;
+  color: #383d41;
 }
 
 /* ---------- Messages ---------- */
 .success {
   margin-top: 10px;
   color: #2e7d32;
-  font-weight: 500;
+  font-weight: bold;
 }
 
+.warning {
+  margin-top: 10px;
+  color: #f39c12;
+  font-weight: bold;
+}
+
+.error {
+  margin-top: 10px;
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+/* ---------- Mobile ---------- */
 @media (max-width: 768px) {
   main {
     padding: 16px;

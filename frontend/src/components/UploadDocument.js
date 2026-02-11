@@ -1,26 +1,36 @@
-import { useState } from "react";
-import { uploadDocument } from "../api";
-
+import { useState, useEffect } from "react";
+import { uploadDocument, getSuppliers } from "../api";
 
 function UploadDocument() {
   const [supplier, setSupplier] = useState("");
+  const [suppliers, setSuppliers] = useState([]);
   const [docType, setDocType] = useState("");
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState("");
-const handleSubmit = async (e) => {
-  e.preventDefault();
 
-  const formData = new FormData();
-  formData.append("supplier_id", supplier);
-  formData.append("document_type", docType);
-  formData.append("file", file);
+  // Load suppliers from backend
+  useEffect(() => {
+    getSuppliers().then(setSuppliers);
+  }, []);
 
-  await uploadDocument(formData);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  setMessage("Document uploaded successfully");
+    const formData = new FormData();
+    formData.append("supplier_id", supplier);
+    formData.append("document_type", docType);
+    formData.append("file", file);
 
+    try {
+      const result = await uploadDocument(formData);
 
-    setMessage("Document uploaded successfully");
+      setMessage(
+        `Document: ${result.document_status} | Supplier: ${result.supplier_status}`
+      );
+    } catch (err) {
+      setMessage("Upload failed");
+    }
+
     setSupplier("");
     setDocType("");
     setFile(null);
@@ -32,21 +42,27 @@ const handleSubmit = async (e) => {
       <p className="subtitle">Upload compliance documents for suppliers</p>
 
       <form onSubmit={handleSubmit}>
+        {/* Supplier Dropdown */}
         <label>Supplier</label>
         <select
           value={supplier}
-          onChange={e => setSupplier(e.target.value)}
+          onChange={(e) => setSupplier(e.target.value)}
           required
         >
           <option value="">Select supplier</option>
-          <option>ABC Foods</option>
-          <option>XYZ Textiles</option>
+
+          {suppliers.map((s) => (
+            <option key={s.supplier_id} value={s.supplier_id}>
+              {s.supplier_name}
+            </option>
+          ))}
         </select>
 
+        {/* Document Type */}
         <label>Document Type</label>
         <select
           value={docType}
-          onChange={e => setDocType(e.target.value)}
+          onChange={(e) => setDocType(e.target.value)}
           required
         >
           <option value="">Select document</option>
@@ -55,24 +71,38 @@ const handleSubmit = async (e) => {
           <option>FSSAI License</option>
           <option>ISO 22000 Certificate</option>
           <option>Quality Audit Report</option>
-          <option>Certificate of Analysis (COA)</option>
+          <option value="COA">Certificate of Analysis (COA)</option>
           <option>ESG Declaration</option>
           <option>Food-Grade Compliance Certificate</option>
           <option>Transport License</option>
           <option>Insurance Certificate</option>
         </select>
 
+        {/* File Upload */}
         <label>Choose File</label>
         <input
           type="file"
-          onChange={e => setFile(e.target.files[0])}
+          onChange={(e) => setFile(e.target.files[0])}
           required
         />
 
         <button type="submit">Upload Document</button>
       </form>
 
-      {message && <p className="success">{message}</p>}
+      {/* Decision Message */}
+      {message && (
+        <p
+          className={
+            message.includes("REJECT")
+              ? "error"
+              : message.includes("ON_HOLD")
+              ? "warning"
+              : "success"
+          }
+        >
+          {message}
+        </p>
+      )}
     </div>
   );
 }
