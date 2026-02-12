@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = " https://is-supplier-onboarding.onrender.com";
 
 export async function getSuppliers() {
   const res = await fetch(`${BASE_URL}/suppliers`);
@@ -15,7 +15,7 @@ export async function addSupplier(data) {
 }
 
 export async function uploadDocument(formData) {
-  const res = await fetch("http://localhost:5000/documents", {
+  const res = await fetch(`${BASE_URL}/documents`, {
     method: "POST",
     body: formData
   });
