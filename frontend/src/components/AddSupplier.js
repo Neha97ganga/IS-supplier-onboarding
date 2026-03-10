@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { addSupplier } from "../api";
+const BASE_URL =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 function AddSupplier() {
   const [name, setName] = useState("");
@@ -22,7 +24,7 @@ function AddSupplier() {
   // 👇 AI GENERATE SUPPLIER
   const generateSupplier = async () => {
     try {
-      const res = await fetch("http://localhost:5000/generate-supplier", {
+      const res = await fetch(`${BASE_URL}/generate-supplier`, {
         method: "POST"
       });
 
@@ -46,7 +48,7 @@ const generateDocuments = async () => {
   }
 
   try {
-    const res = await fetch("http://localhost:5000/generate-supplier-docs", {
+    const res = await fetch(`${BASE_URL}/generate-supplier-docs`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
