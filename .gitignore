@@ -36,3 +36,9 @@ backend/database.db
 # Uploads (generated files)
 # -------------------------
 backend/uploads/*
+
+# -------------------------
+# Docker
+# -------------------------
+docker-compose.override.yml
+*.log
