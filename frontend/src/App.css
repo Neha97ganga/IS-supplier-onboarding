@@ -238,6 +238,117 @@ tr:last-child td {
   font-weight: bold;
 }
 
+/* ---------- Reusable buttons ---------- */
+.secondary-button {
+  background: transparent;
+  border: 1px solid #ffffffaa;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.secondary-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.header-logout {
+  margin-left: auto;
+}
+
+/* ---------- Admin / profile layout helpers ---------- */
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.profile-section {
+  margin-top: 20px;
+}
+
+.explanation-box {
+  background: #f7f9fb;
+  border-radius: 6px;
+  padding: 12px 14px;
+  border: 1px solid #dde3ea;
+  line-height: 1.5;
+}
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.clickable-row:hover {
+  background-color: #f5f7fa;
+}
+
+/* ---------- Login & tabs ---------- */
+.login-card {
+  max-width: 520px;
+}
+
+.login-role-toggle {
+  display: inline-flex;
+  border-radius: 999px;
+  background: #eef2f5;
+  padding: 4px;
+  margin-bottom: 16px;
+}
+
+.login-role-toggle button {
+  border: none;
+  background: transparent;
+  padding: 6px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  color: inherit;
+}
+
+.login-role-toggle button.active {
+  background: #0b3c5d;
+  color: white;
+}
+
+.login-panel {
+  margin-top: 8px;
+}
+
+.tab-toggle {
+  display: inline-flex;
+  gap: 4px;
+  border-radius: 999px;
+  background: #eef2f5;
+  padding: 4px;
+  margin-bottom: 20px;
+}
+
+.tab-toggle button {
+  border: none;
+  background: transparent;
+  padding: 6px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.tab-toggle button.active {
+  background: #0b3c5d;
+  color: white;
+}
+
+.saved-suppliers select {
+  margin-top: 6px;
+}
+
+.supplier-status-panel {
+  margin-top: 8px;
+}
+
 /* ---------- Mobile ---------- */
 @media (max-width: 768px) {
   main {
@@ -259,4 +370,10 @@ tr:last-child td {
   td {
     padding: 10px 0;
   }
+}
+.explanation-box {
+  background: #f6f8fa;
+  padding: 12px;
+  border-radius: 8px;
+  line-height: 1.6;
 }
