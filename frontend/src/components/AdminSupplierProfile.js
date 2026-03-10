@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { getSupplierProfile, getSupplierExplanation } from "../api";
 
 function AdminSupplierProfile({ supplierId, onBack }) {
@@ -148,9 +149,7 @@ function AdminSupplierProfile({ supplierId, onBack }) {
             {explanationError && <p className="error">{explanationError}</p>}
             {explanation ? (
               <div className="explanation-box">
-                {explanation.split("\n").map((line, idx) => (
-                  <p key={idx}>{line}</p>
-                ))}
+                <ReactMarkdown>{explanation}</ReactMarkdown>
               </div>
             ) : (
               !explanationError && <p>No explanation available yet.</p>
