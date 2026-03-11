@@ -1,37 +1,33 @@
 CREATE TABLE suppliers (
-    supplier_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    supplier_name TEXT,
-    category TEXT,
-    status TEXT
+  supplier_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  supplier_name TEXT,
+  category TEXT,
+  status TEXT
 );
 
 CREATE TABLE documents (
-    document_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    supplier_id INTEGER,
-    document_type TEXT,
-    file_path TEXT,
-    upload_date TEXT
+  document_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  supplier_id INTEGER,
+  document_type TEXT,
+  file_path TEXT,
+  upload_date TEXT
 );
 
 CREATE TABLE decisions (
-    decision_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    supplier_id INTEGER,
-    decision TEXT,
-    reason TEXT
+  decision_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  supplier_id INTEGER,
+  decision TEXT,
+  reason TEXT
 );
+
 CREATE TABLE evaluations (
-    evaluation_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    supplier_id INTEGER,
-    criteria TEXT,
-    score INTEGER
+  evaluation_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  supplier_id INTEGER,
+  criteria TEXT,
+  score INTEGER
 );
+
 CREATE TABLE rules (
-  rule_id INTEGER PRIMARY KEY AUTOINCREMENT,
-  document_type TEXT,
-  required_checks TEXT,
-  created_at TEXT
-);
-CREATE TABLE IF NOT EXISTS rules (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   document_type TEXT,
   check_id TEXT,
@@ -39,7 +35,7 @@ CREATE TABLE IF NOT EXISTS rules (
   severity TEXT
 );
 
-CREATE TABLE IF NOT EXISTS rule_results (
+CREATE TABLE rule_results (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   supplier_id INTEGER,
   document_type TEXT,
@@ -47,7 +43,7 @@ CREATE TABLE IF NOT EXISTS rule_results (
   result TEXT
 );
 
-CREATE TABLE IF NOT EXISTS document_results (
+CREATE TABLE document_results (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   supplier_id INTEGER,
   document_type TEXT,
