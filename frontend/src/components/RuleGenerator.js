@@ -50,7 +50,7 @@ function RuleGenerator() {
       setLoading(true);
       console.log("🚀 Sending request using fetch");
 
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/sample-documents`, {
+      const res = await fetch(`${BASE_URL}/sample-documents`, {
         method: "POST",
         body: formData
       });
