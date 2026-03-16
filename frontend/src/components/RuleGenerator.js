@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { getRules, deleteRule } from "../api";
+const BASE_URL =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 function RuleGenerator() {
   const [file, setFile] = useState(null);
