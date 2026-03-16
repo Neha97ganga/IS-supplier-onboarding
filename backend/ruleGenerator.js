@@ -97,7 +97,7 @@ ${text}
     await new Promise((resolve, reject) => {
       db.run(
         `INSERT INTO rules (document_type, check_id, description, severity, logic_rule)
-         VALUES (?, ?, ?, ?)`,
+         VALUES (?, ?, ?, ?, ?)`,
         [rules.document_type, r.check_id, r.description, r.severity, r.logic_rule],
         (err) => (err ? reject(err) : resolve())
       );
