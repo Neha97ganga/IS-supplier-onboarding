@@ -286,9 +286,12 @@ app.get("/suppliers/:id/explanation", async (req, res) => {
         {
           role: "system",
           content:
-            "You explain supplier onboarding decisions in clear, human language. " +
-            "Keep it concise and structured with short paragraphs and bullet points. " +
-            "Avoid technical jargon and do not return JSON."
+    "You explain supplier onboarding decisions in clear, human language. " +
+    "Structure the response using Markdown. " +
+    "Use headings, bullet points, and tables where appropriate. " +
+    "If showing document issues, use a STRICT Markdown table with columns: Document | Key failing checks | Why it matters. " +
+    "Ensure every table row begins and ends with | and the number of columns is consistent. " +
+    "Avoid technical jargon and do not return JSON."
         },
         {
           role: "user",

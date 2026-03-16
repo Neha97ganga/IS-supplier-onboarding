@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { getSupplierProfile, getSupplierExplanation } from "../api";
 
 function AdminSupplierProfile({ supplierId, onBack }) {
@@ -149,7 +150,9 @@ function AdminSupplierProfile({ supplierId, onBack }) {
             {explanationError && <p className="error">{explanationError}</p>}
             {explanation ? (
               <div className="explanation-box">
-                <ReactMarkdown>{explanation}</ReactMarkdown>
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {explanation}
+                </ReactMarkdown>
               </div>
             ) : (
               !explanationError && <p>No explanation available yet.</p>

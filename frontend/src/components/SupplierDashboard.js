@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import {
   uploadDocument,
   getSupplierProfile,
@@ -228,7 +229,9 @@ function SupplierDashboard({ supplierId }) {
                 )}
                 {explanation ? (
                   <div className="explanation-box">
-                    <ReactMarkdown>{explanation}</ReactMarkdown>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {explanation}
+                    </ReactMarkdown>
                   </div>
                 ) : (
                   !explanationError && (
