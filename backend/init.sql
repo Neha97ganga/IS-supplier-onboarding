@@ -32,7 +32,8 @@ CREATE TABLE rules (
   document_type TEXT,
   check_id TEXT,
   description TEXT,
-  severity TEXT
+  severity TEXT,
+  logic_rule TEXT
 );
 
 CREATE TABLE rule_results (

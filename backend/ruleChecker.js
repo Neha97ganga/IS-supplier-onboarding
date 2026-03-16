@@ -1,3 +1,8 @@
+/*
+Inference Engine:
+Evaluates validation rules and applies decision rules
+to determine document and supplier compliance status.
+*/
 const db = require("./db");
 
 function decideDocumentStatus(results) {

@@ -51,7 +51,8 @@ Schema:
     {
       "check_id": "string",
       "description": "string",
-      "severity": "critical | major | minor"
+      "severity": "critical | major | minor",
+      "logic_rule": "First Order Logic representation of the rule"
     }
   ]
 }
@@ -95,9 +96,9 @@ ${text}
   for (const r of rules.required_checks) {
     await new Promise((resolve, reject) => {
       db.run(
-        `INSERT INTO rules (document_type, check_id, description, severity)
+        `INSERT INTO rules (document_type, check_id, description, severity, logic_rule)
          VALUES (?, ?, ?, ?)`,
-        [rules.document_type, r.check_id, r.description, r.severity],
+        [rules.document_type, r.check_id, r.description, r.severity, r.logic_rule],
         (err) => (err ? reject(err) : resolve())
       );
     });
