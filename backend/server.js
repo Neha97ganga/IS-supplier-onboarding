@@ -434,19 +434,18 @@ app.post("/generate-supplier-docs", async (req, res) => {
 /* ---------- Get Formal Logic Rules ---------- */
 app.get("/rules/logic", (req, res) => {
   db.all(
-    `SELECT document_type, check_id, description, severity, logic_rule 
-     FROM rules`,
+    `SELECT document_type, check_id, description, severity, logic_rule FROM rules`,
     [],
     (err, rows) => {
       if (err) {
-        console.error("❌ DB error:", err);
+        console.error(err);
         return res.status(500).json({ error: "DB error" });
       }
-      res.json(rows);
+
+      res.json(rows); // ✅ includes logic_rule
     }
   );
 });
-
 /* ---------- Start Server ---------- */
 const PORT = process.env.PORT || 5000;
 
